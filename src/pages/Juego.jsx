@@ -38,9 +38,10 @@ const Juego = () => {
         setIndex(6)
     }
 
-    // const abandonarJuego = () => {
-
-    // }
+    const abandonarJuego = () => {
+        setPuntaje(puntaje)
+        setIndex(6)
+    }
 
     let preguntasElegidas = [];
 
@@ -94,6 +95,13 @@ const Juego = () => {
                                     preguntasElegidas[0].opcion4 === preguntasElegidas[0].correcto ? modificarContador : finJuego 
                                 }>{preguntasElegidas[0].opcion4}</button>
                         </div>
+                        <div className='flex justify-center px-40 mt-10'>
+                            <button
+                                className='text-2xl py-3 px-20 mb-2 rounded-3xl bg-red-600 hover:bg-red-300'
+                                onClick={
+                                   abandonarJuego
+                                }>Abandonar juego</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -131,6 +139,13 @@ const Juego = () => {
                                 onClick={
                                     preguntasElegidas[1].opcion4 === preguntasElegidas[1].correcto ? modificarContador : finJuego 
                                 }>{preguntasElegidas[1].opcion4}</button>
+                        </div>
+                        <div className='flex justify-center px-40 mt-10'>
+                            <button
+                                className='text-2xl py-3 px-20 mb-2 rounded-3xl bg-red-600 hover:bg-red-300'
+                                onClick={
+                                   abandonarJuego
+                                }>Abandonar juego</button>
                         </div>
                     </div>
                 </div>
@@ -170,6 +185,13 @@ const Juego = () => {
                                     preguntasElegidas[2].opcion4 === preguntasElegidas[2].correcto ? modificarContador : finJuego 
                                 }>{preguntasElegidas[2].opcion4}</button>
                         </div>
+                        <div className='flex justify-center px-40 mt-10'>
+                            <button
+                                className='text-2xl py-3 px-20 mb-2 rounded-3xl bg-red-600 hover:bg-red-300'
+                                onClick={
+                                   abandonarJuego
+                                }>Abandonar juego</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -207,6 +229,13 @@ const Juego = () => {
                                 onClick={
                                     preguntasElegidas[3].opcion4 === preguntasElegidas[3].correcto ? modificarContador : finJuego 
                                 }>{preguntasElegidas[3].opcion4}</button>
+                        </div>
+                        <div className='flex justify-center px-40 mt-10'>
+                            <button
+                                className='text-2xl py-3 px-20 mb-2 rounded-3xl bg-red-600 hover:bg-red-300'
+                                onClick={
+                                   abandonarJuego
+                                }>Abandonar juego</button>
                         </div>
                     </div>
                 </div>
@@ -246,6 +275,13 @@ const Juego = () => {
                                     preguntasElegidas[4].opcion4 === preguntasElegidas[4].correcto ? modificarContador : finJuego 
                                 }>{preguntasElegidas[4].opcion4}</button>
                         </div>
+                        <div className='flex justify-center px-40 mt-10'>
+                            <button
+                                className='text-2xl py-3 px-20 mb-2 rounded-3xl bg-red-600 hover:bg-red-300'
+                                onClick={
+                                   abandonarJuego
+                                }>Abandonar juego</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -254,22 +290,27 @@ const Juego = () => {
         return (
             <div>
                 <div className='flex flex-col h-screen justify-center'>
-                    <div className='border-8 border-yellow-400 m-40 rounded-3xl'>
-                        <div className='flex justify-around px-40 mt-10'>
-                            <h1 className='font-extrabold text-5xl text-center'>Puntaje {puntaje}</h1>
+                    <div className='flex justify-center border-8 border-yellow-400 m-40 rounded-3xl'>
+                        <div className='flex flex-col justify-center px-40 mt-10'>
+                            {puntaje === 150?<span className='text-center font-extrabold text-6xl'>Felicitaciones</span>:<span className='text-center font-extrabold text-6xl'>Puedes hacerlo mejor</span>}
+                            <h1 className='font-extrabold text-5xl text-center mt-10'>Puntaje final: {puntaje}</h1>
                             <div>                                
                                 <form
+                                    className='flex flex-col justify-center'
                                     onSubmit={e => {
                                     e.preventDefault();
                                     crearJugador({ variables: { nombre: nombre.value, puntaje: puntaje } })
                                     window.location.href = "/historial"
                                     }}
                                 >
+                                    <span className='text-center font-extrabold text-2xl mt-4'>Ingresa tu nombre:</span>
                                     <input
                                     ref={value => setNombre(value)} 
                                     id='nombre'
+                                    className='border border-b-slate-400 mt-4 py-2 text-2xl text-center rounded-2xl'
+                                    required='true'
                                     />
-                                    <button type="submit">Aceptar</button>
+                                    <button type="submit" className='text-2xl py-3 px-20 mb-2 rounded-3xl bg-green-600 hover:bg-green-300 mt-4'>Aceptar</button>
                                 </form>
                             </div>
                         </div>
