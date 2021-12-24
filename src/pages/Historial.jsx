@@ -1,10 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Historial = () => {
     return (
         <div className='flex flex-col h-screen items-center'>
             <h1 className='font-extrabold text-5xl text-center mt-7'>Historial de jugadores</h1>
-            <table className='mt-8 text-xl border border-black'>
+            <Link to='/'>
+                <button className='text-2xl p-3 mt-4 rounded-3xl bg-blue-600 hover:bg-blue-300'>Inicio</button>
+            </Link>
+            <table className='mt-6 text-xl border border-black'>
                 <thead>
                     <tr>
                         <th className='px-16'>Nombre</th>
