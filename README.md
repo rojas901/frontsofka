@@ -2,7 +2,7 @@
 
 Sino usas yarn ejecuta el siguiente comando en la consola:
 
-nmp install -g yarn
+npm install --global yarn
 
 # Clonar repositorio
 
