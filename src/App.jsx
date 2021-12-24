@@ -1,9 +1,18 @@
 import Index from './pages/Index';
-import './index.css'
+import Juego from './pages/Juego';
+import Historial from './pages/Historial';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './styles/index.css'
 
 function App() {
   return (
-    <Index> </Index>
+    <BrowserRouter>
+      <Routes>
+        <Route path='' element={<Index/>}/>
+        <Route path='/juego' element={<Juego/>}/>
+        <Route path='/historial' element={<Historial/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
