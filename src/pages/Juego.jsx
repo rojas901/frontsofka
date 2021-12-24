@@ -1,14 +1,15 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { GET_PREGUNTAS } from '../graphql/preguntas/queries';
+import { CREAR_JUGADOR } from '../graphql/jugadores/mutations';
 
 const Juego = () => {
-
+    
+    const [nombre, setNombre] = useState('')
     const [index, setIndex] = useState(1);
     const [puntaje, setPuntaje] = useState(0);
     const { data, error, loading } = useQuery(GET_PREGUNTAS);
-    
-
+    const [crearJugador] = useMutation(CREAR_JUGADOR);
 
     useEffect(() => {
 
@@ -33,8 +34,13 @@ const Juego = () => {
     }
 
     const finJuego = () => {
-        window.location.href = "/historial"
+        setPuntaje(0)
+        setIndex(6)
     }
+
+    // const abandonarJuego = () => {
+
+    // }
 
     let preguntasElegidas = [];
 
@@ -54,7 +60,7 @@ const Juego = () => {
 
     if (!data) {
         return <div>No hay datos</div>
-    } else if (index === 1) {
+    }else if (index === 1) {
         return (
             <div>
                 <div className='flex flex-col h-screen justify-center'>
@@ -92,7 +98,7 @@ const Juego = () => {
                 </div>
             </div>
         )
-    }  else if (index === 2) {
+    }else if (index === 2) {
         return (
             <div>
                 <div className='flex flex-col h-screen justify-center'>
@@ -251,6 +257,21 @@ const Juego = () => {
                     <div className='border-8 border-yellow-400 m-40 rounded-3xl'>
                         <div className='flex justify-around px-40 mt-10'>
                             <h1 className='font-extrabold text-5xl text-center'>Puntaje {puntaje}</h1>
+                            <div>                                
+                                <form
+                                    onSubmit={e => {
+                                    e.preventDefault();
+                                    crearJugador({ variables: { nombre: nombre.value, puntaje: puntaje } })
+                                    window.location.href = "/historial"
+                                    }}
+                                >
+                                    <input
+                                    ref={value => setNombre(value)} 
+                                    id='nombre'
+                                    />
+                                    <button type="submit">Aceptar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
